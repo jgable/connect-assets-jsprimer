@@ -12,7 +12,7 @@ An NPM module that forces compilation of your javascript [connect-assets](https:
 
 `npm install connect-assets-jsprimer`
 
-* There is a dependency on CoffeeScript.  If you want a straight javascript version, you can compile it easily yourself.
+* There is a dependency on [CoffeeScript](http://coffeescript.org).  If you want a straight javascript version, you can compile it easily yourself.
 
 ### Usage
 
@@ -23,6 +23,9 @@ An NPM module that forces compilation of your javascript [connect-assets](https:
     
     app.use assets()
     jsPrimer assets
+
+    # Optionally, you can pass in a log function to see progress
+    # jsPrimer assets, console.log
     
 ### Copyright
 
