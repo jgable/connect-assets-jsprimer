@@ -29,4 +29,4 @@ An NPM module that forces compilation of your javascript [connect-assets](https:
     
 ### Copyright
 
-Created by Jacob Gable.  MIT License; no attribution required.
+Created by [Jacob Gable](http://jacobgable.com).  MIT License; no attribution required.
