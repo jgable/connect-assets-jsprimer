@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>connect-assets-jsprimer by jgable</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/jgable/connect-assets-jsprimer">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/jgable/connect-assets-jsprimer/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/jgable/connect-assets-jsprimer/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>connect-assets-jsprimer</h1>
+          <p>An NPM module for forcing javascript file assets to be compiled without being referenced in views.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/jgable">jgable</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>connect-assets-jsprimer</h1>
+
+<p>An NPM module that forces compilation of your javascript <a href="https://github.com/TrevorBurnham/connect-assets">connect-assets</a> without referencing them in a view.</p>
+
+<h3>Problems This Helps With</h3>
+
+<ul>
+<li>You are using <a href="http://requirejs.org">requireJS</a> and don't want to reference all your javascript files in the view.</li>
+<li>You have a javascript file that is dynamically loaded on your page but not in the view.</li>
+</ul><h3>Installation</h3>
+
+<p><code>npm install connect-assets-jsprimer</code></p>
+
+<ul>
+<li>There is a dependency on <a href="http://coffeescript.org">CoffeeScript</a>.  If you want a straight javascript version, you can compile it easily yourself.</li>
+</ul><h3>Usage</h3>
+
+<pre><code>assets = require 'connect-assets'
+jsPrimer = require 'connect-assets-jsprimer'
+
+# Snip ...
+
+app.use assets()
+jsPrimer assets
+
+# Optionally, you can pass in a log function to see progress
+# jsPrimer assets, console.log
+</code></pre>
+
+<h3>Copyright</h3>
+
+<p>Created by <a href="http://jacobgable.com">Jacob Gable</a>.  MIT License; no attribution required.</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
