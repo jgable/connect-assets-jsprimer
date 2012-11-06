@@ -1,5 +1,7 @@
 fs = require "fs"
+FileLoader = require "./FileLoader"
 
+###
 loadFiles = (assetsModule, log) ->
   assets = assetsModule.instance
   assetJS = assets.options.helperContext.js
@@ -19,8 +21,10 @@ loadFiles = (assetsModule, log) ->
   
     loadJSFileOrDirectory "#{dirPath}/#{path}" for path in paths
     true
-
-  loadJSFileOrDirectory jsFilesRoot
+###
+  
 
 module.exports = (assets, log) ->
-    loadFiles assets, log
+  loader = new FileLoader assets, log
+
+  do loader.loadFiles
