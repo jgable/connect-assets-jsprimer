@@ -1,7 +1,7 @@
 fs = require "fs"
 
 class FileLoader
-  constructor: (assetsModule, @log) ->
+  constructor: (assetsModule, @log, skipHidden) ->
     @assets = assetsModule.instance
     @assetJS = @assets.options.helperContext.js
     @jsFilesRoot = @assets.options.src + "/js"
@@ -21,6 +21,10 @@ class FileLoader
       @_loadJSDirectory path
     else
       assetName = (((path.replace @jsFilesRoot, "").replace ".coffee", "").replace ".js", "").slice 1
+
+      # Skip if a hidden file
+      return if assetName[0] == "."
+      
       @log?("Assetizing #{assetName}")
       @assetJS assetName
 
