@@ -1,4 +1,4 @@
-connect-assets-jsprimer
+connect-assets-jsprimer [![Build Status](https://secure.travis-ci.org/jgable/connect-assets-jsprimer.png)](http://travis-ci.org/jgable/connect-assets-jsprimer)
 =======================
 
 An NPM module that forces compilation of your javascript [connect-assets](https://github.com/TrevorBurnham/connect-assets) without referencing them in a view.
