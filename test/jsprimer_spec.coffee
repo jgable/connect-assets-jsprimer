@@ -37,3 +37,4 @@ describe "FileLoader", ->
 
 		loader.loadFiles()
 		(".hidden.swp" in filesLoaded).should.equal false
+		("test/.hidden.swp" in filesLoaded).should.equal false
