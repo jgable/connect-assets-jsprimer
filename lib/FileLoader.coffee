@@ -1,5 +1,7 @@
 fs = require "fs"
 
+watchr = require "watchr"
+
 class FileLoader
   constructor: (assetsModule, @log, skipHidden) ->
     @assets = assetsModule.instance
@@ -27,5 +29,20 @@ class FileLoader
       
       @log?("Assetizing #{assetName}")
       @assetJS assetName
+
+  watchFiles: (fileChangedCallback, done) ->
+
+    watchOptions = 
+      path: @jsFilesRoot
+      listener: (evt, filePath, fileStat, filePrevStat) =>
+        @_loadJSFileOrDirectory filePath
+        fileChangedCallback?(null, filePath)
+      next: (err, watchr) ->
+        done(err, watchr)
+
+    watchr.watch watchOptions
+
+
+
 
 module.exports = FileLoader
