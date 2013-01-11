@@ -2,29 +2,30 @@ fs = require "fs"
 
 should = require "should"
 
+assets = require 'connect-assets'
+path = require 'path'
+
 FileLoader = require "../lib/FileLoader"
 
 describe "FileLoader", ->
 
-	assetsMock = null
 	loader = null
-	toEditFilePath = process.cwd() + "/test/assets/js/new.coffee"
+	testRoot = path.join process.cwd(), "test/assets"
+
+	toEditFilePath = path.join testRoot, "js/new.coffee"
 	removeNewFiles = ->
 		if fs.existsSync toEditFilePath
 			fs.unlinkSync toEditFilePath
 
+
 	beforeEach ->
 		removeNewFiles()
 
-		assetsMock = 
-			instance: 
-				options:
-					helperContext:
-						js: (path) ->
-							# TODO: Something?
-					src: process.cwd() + "/test/assets"
-
-		loader = new FileLoader assetsMock
+		assets (
+			src: testRoot
+			helperContext: {}
+		)
+		loader = new FileLoader assets
 
 	afterEach ->
 		removeNewFiles()
