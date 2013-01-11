@@ -3,10 +3,10 @@ fs = require "fs"
 watchr = require "watchr"
 
 class FileLoader
-  constructor: (assetsModule, @log, skipHidden) ->
+  constructor: (@assetsModule, @log, skipHidden) ->
     @assets = assetsModule.instance
     @assetJS = @assets.options.helperContext.js
-    @jsFilesRoot = @assets.options.src + "/js"
+    @jsFilesRoot = "#{@assets.options.src}/#{@assetJS.root}"
 
   loadFiles: ->
     @_loadJSFileOrDirectory @jsFilesRoot
@@ -22,7 +22,12 @@ class FileLoader
     if stat?.isDirectory()
       @_loadJSDirectory path
     else
-      assetName = (((path.replace @jsFilesRoot, "").replace ".coffee", "").replace ".js", "").slice 1
+      # Remove the js extension if any
+      assetName = ((path.replace @jsFilesRoot, '').replace '.js', '').slice 1
+
+      # Remove all the compiler extensions
+      for ext, compiler of @assetsModule.jsCompilers
+        assetName = assetName.replace ".#{ext}", ''
 
       # Skip if a hidden file
       return if "." == assetName.split("/")[assetName.split("/").length - 1][0]

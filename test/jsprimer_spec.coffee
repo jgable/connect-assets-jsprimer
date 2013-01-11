@@ -2,75 +2,76 @@ fs = require "fs"
 
 should = require "should"
 
+assets = require 'connect-assets'
+path = require 'path'
+
 FileLoader = require "../lib/FileLoader"
 
 describe "FileLoader", ->
 
-    assetsMock = null
-    loader = null
-    toEditFilePath = process.cwd() + "/test/assets/js/new.coffee"
-    removeNewFiles = ->
-        if fs.existsSync toEditFilePath
-            fs.unlinkSync toEditFilePath
+	loader = null
+	testRoot = path.join process.cwd(), "test/assets"
 
-    beforeEach ->
-        removeNewFiles()
+	toEditFilePath = path.join testRoot, "js/new.coffee"
+	removeNewFiles = ->
+		if fs.existsSync toEditFilePath
+			fs.unlinkSync toEditFilePath
 
-        assetsMock = 
-            instance: 
-                options:
-                    helperContext:
-                        js: (path) ->
-                            # TODO: Something?
-                    src: process.cwd() + "/test/assets"
 
-        loader = new FileLoader assetsMock
+	beforeEach ->
+		removeNewFiles()
 
-    afterEach ->
-        removeNewFiles()
+		assets (
+			src: testRoot
+			helperContext: {}
+		)
+		loader = new FileLoader assets
 
-    it "can instantiate", ->
-        should.exist loader
+	afterEach ->
+		removeNewFiles()
 
-    it "can load files from connect-assets src directory", ->
-        fileNames = ["one", "two", "three", "model/book", "view/shelf", "controller/library"]
-        called = 0
-        loader.assetJS = (path) ->
-            called++
-            (path in fileNames).should.equal true
+	it "can instantiate", ->
+		should.exist loader
 
-        loader.loadFiles()
-        called.should.equal fileNames.length
+	it "can load files from connect-assets src directory", ->
+		fileNames = ["one", "two", "three", "model/book", "view/shelf", "controller/library"]
+		called = 0
+		loader.assetJS = (path) ->
+			called++
+			(path in fileNames).should.equal true
 
-    it "skips files with leading '.'", ->
-        filesLoaded = []
-        loader.assetJS = (path) ->
-            filesLoaded.push path
+		loader.loadFiles()
+		called.should.equal fileNames.length
 
-        loader.loadFiles()
-        (".hidden.swp" in filesLoaded).should.equal false
-        ("test/.hidden.swp" in filesLoaded).should.equal false
+	it "skips files with leading '.'", ->
+		filesLoaded = []
+		loader.assetJS = (path) ->
+			filesLoaded.push path
 
-    it "can monitor when files change", (done) ->
-        fileNames = ["one", "two", "three", "model/book", "view/shelf", "controller/library"]
-        called = 0
-        loader.assetJS = (path) ->
-            called++
-        fileChangedCallback = (err, changedFilePath) ->
-            throw err if err
-            
-            changedFilePath.should.equal toEditFilePath
+		loader.loadFiles()
+		(".hidden.swp" in filesLoaded).should.equal false
+		("test/.hidden.swp" in filesLoaded).should.equal false
 
-            called.should.equal (fileNames.length + 1)
+	it "can monitor when files change", (done) ->
+		fileNames = ["one", "two", "three", "model/book", "view/shelf", "controller/library"]
+		called = 0
+		loader.assetJS = (path) ->
+			called++
+		fileChangedCallback = (err, changedFilePath) ->
+			throw err if err
+			
+			changedFilePath.should.equal toEditFilePath
 
-            done()
+			called.should.equal (fileNames.length + 1)
 
-        loader.loadFiles()
+			done()
 
-        called.should.equal fileNames.length
+		loader.loadFiles()
 
-        loader.watchFiles fileChangedCallback, (err, watcher) ->
-            fs.writeFile toEditFilePath, "blah = 123\nother = 456", (err) ->
-                throw err if err
-                # Should have triggered the fileChangedCallback
-        
+		called.should.equal fileNames.length
+
+		loader.watchFiles fileChangedCallback, (err, watcher) ->
+			fs.writeFile toEditFilePath, "blah = 123\nother = 456", (err) ->
+				throw err if err
+				# Should have triggered the fileChangedCallback
+

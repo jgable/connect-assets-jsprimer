@@ -1,6 +1,6 @@
 {
   "name": "connect-assets-jsprimer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://jgable.github.com/connect-assets-jsprimer",
   "description": "Forces compilation of your javascript connect-assets without referencing them in a view.",
   "main": "index.js",
@@ -22,6 +22,7 @@
     "watchr": "~2.1.6"
   },
   "devDependencies": {
+    "connect-assets": "~2.3.3",
     "mocha": "~1.6.0",
     "should": "~1.2.1"
   }
