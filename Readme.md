@@ -26,6 +26,12 @@ An NPM module that forces compilation of your javascript [connect-assets](https:
 
     # Optionally, you can pass in a log function to see progress
     # jsPrimer assets, console.log
+
+### Contributors
+
+[Jacob Gable](http://jacobgable.com)
+
+[Adrien Antoine](http://adriantoine.com/)
     
 ### Copyright
 

@@ -16,6 +16,9 @@
     "requirejs"
   ],
   "author": "Jacob Gable <jacob.gable@gmail.com>",
+  "contributors": [
+    "Adrien Antoine <adriantoine@gmail.com> (http://adriantoine.com/)"
+  ],
   "license": "MIT",
   "dependencies": {
     "coffee-script": "~1.3.3",
