@@ -22,6 +22,7 @@
     "watchr": "~2.1.6"
   },
   "devDependencies": {
+    "connect-assets": "~2.3.3",
     "mocha": "~1.6.0",
     "should": "~1.2.1"
   }
