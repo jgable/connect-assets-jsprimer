@@ -35,7 +35,11 @@ class FileLoader
 
       # Skip if a hidden file
       return if "." is path.basename(assetName).slice(0, 1)
-      
+
+      # connet-assets will not route correctly with '\' in the name.
+      # Replacing them to so that connect-assets will have the correct c
+      assetName = assetName.replace '\\', '/'
+
       @log?("Assetizing #{assetName}")
       @assetJS assetName
 

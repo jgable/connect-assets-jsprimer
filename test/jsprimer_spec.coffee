@@ -19,10 +19,10 @@ describe "FileLoader", ->
 		"one", 
 		"two", 
 		"three", 
-		# these need to have the seperator context specific to the os
-		"model#{path.sep}book", 
-		"view#{path.sep}shelf", 
-		"controller#{path.sep}library"
+		# specifically the seperator needs to be a '/' to route corretly in connect-assets
+		"model/book", 
+		"view/shelf", 
+		"controller/library"
 	]
 	
 	removeNewFiles = ->
