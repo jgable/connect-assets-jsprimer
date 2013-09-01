@@ -13,10 +13,23 @@ describe "FileLoader", ->
 	testRoot = path.join process.cwd(), "test/assets"
 
 	toEditFilePath = path.join testRoot, "js/new.coffee"
+	toEditFilePathWin = path.join testRoot, "js/new-win.coffee"
+	
+	fileNames = [
+		"one", 
+		"two", 
+		"three", 
+		# specifically the seperator needs to be a '/' to route corretly in connect-assets
+		"model/book", 
+		"view/shelf", 
+		"controller/library"
+	]
+	
 	removeNewFiles = ->
 		if fs.existsSync toEditFilePath
 			fs.unlinkSync toEditFilePath
-
+		if fs.existsSync toEditFilePathWin
+			fs.unlinkSync toEditFilePathWin
 
 	beforeEach ->
 		removeNewFiles()
@@ -34,15 +47,29 @@ describe "FileLoader", ->
 		should.exist loader
 
 	it "can load files from connect-assets src directory", ->
-		fileNames = ["one", "two", "three", "model/book", "view/shelf", "controller/library"]
 		called = 0
 		loader.assetJS = (path) ->
 			called++
-			(path in fileNames).should.equal true
+			(path in fileNames).should.equal true, path
 
 		loader.loadFiles()
 		called.should.equal fileNames.length
 
+	it "can load files from connect-assets with relative src directory", ->
+		assets
+			src: 'test/assets'
+			helperContext: {}
+		
+		loader = new FileLoader assets
+		
+		called = 0
+		loader.assetJS = (path) ->
+			called++
+			(path in fileNames).should.equal true, path
+
+		loader.loadFiles()
+		called.should.equal fileNames.length
+	
 	it "skips files with leading '.'", ->
 		filesLoaded = []
 		loader.assetJS = (path) ->
@@ -53,7 +80,6 @@ describe "FileLoader", ->
 		("test/.hidden.swp" in filesLoaded).should.equal false
 
 	it "can monitor when files change", (done) ->
-		fileNames = ["one", "two", "three", "model/book", "view/shelf", "controller/library"]
 		called = 0
 		loader.assetJS = (path) ->
 			called++
