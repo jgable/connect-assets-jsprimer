@@ -22,7 +22,8 @@ describe "FileLoader", ->
 		# specifically the seperator needs to be a '/' to route corretly in connect-assets
 		"model/book", 
 		"view/shelf", 
-		"controller/library"
+		"controller/library",
+		"admin/user/account"
 	]
 	
 	removeNewFiles = ->

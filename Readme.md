@@ -32,6 +32,8 @@ An NPM module that forces compilation of your javascript [connect-assets](https:
 [Jacob Gable](http://jacobgable.com)
 
 [Adrien Antoine](http://adriantoine.com/)
+
+[Jonathan Chapman](https://github.com/chafnan)
     
 ### Copyright
 
