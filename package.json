@@ -17,7 +17,8 @@
   ],
   "author": "Jacob Gable <jacob.gable@gmail.com>",
   "contributors": [
-    "Adrien Antoine <adriantoine@gmail.com> (http://adriantoine.com/)"
+    "Adrien Antoine <adriantoine@gmail.com> (http://adriantoine.com/)",
+	"Jonathan Chapman <chafnan@gmail.com> (https://github.com/chafnan)"
   ],
   "license": "MIT",
   "dependencies": {
