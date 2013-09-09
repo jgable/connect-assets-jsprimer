@@ -38,7 +38,7 @@ class FileLoader
 
       # connet-assets will not route correctly with '\' in the name.
       # Replacing them to so that connect-assets will have the correct c
-      assetName = assetName.replace '\\', '/'
+      assetName = assetName.replace /\\/g, '/'
 
       @log?("Assetizing #{assetName}")
       @assetJS assetName
