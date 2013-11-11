@@ -22,10 +22,10 @@ An NPM module that forces compilation of your javascript [connect-assets](https:
     # Snip ...
     
     app.use assets()
-    jsPrimer assets
+    jsPrimer.loadFiles assets
 
     # Optionally, you can pass in a log function to see progress
-    # jsPrimer assets, console.log
+    # jsPrimer.loadFiles assets, console.log
 
 ### Contributors
 
