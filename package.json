@@ -1,6 +1,6 @@
 {
   "name": "connect-assets-jsprimer",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "homepage": "https://jgable.github.com/connect-assets-jsprimer",
   "description": "Forces compilation of your javascript connect-assets without referencing them in a view.",
   "main": "index.js",
@@ -18,7 +18,8 @@
   "author": "Jacob Gable <jacob.gable@gmail.com>",
   "contributors": [
     "Adrien Antoine <adriantoine@gmail.com> (http://adriantoine.com/)",
-    "Jonathan Chapman <chafnan@gmail.com> (https://github.com/chafnan)"
+    "Jonathan Chapman <chafnan@gmail.com> (https://github.com/chafnan)",
+    "Jason Merril <jason@desmos.com> (https://github.com/jwmerrill)"
   ],
   "license": "MIT",
   "dependencies": {
