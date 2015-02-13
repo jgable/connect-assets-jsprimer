@@ -5,7 +5,7 @@ watchr = require "watchr"
 
 class FileLoader
   constructor: (@assetsModule, @log, skipHidden) ->
-    @assets = assetsModule.instance
+    @assets = @assetsModule.instance
     @assetJS = @assets.options.helperContext.js
     @jsFilesRoot = path.join @assets.options.src, @assetJS.root
 
@@ -14,7 +14,7 @@ class FileLoader
 
   _loadJSDirectory: (dirPath) ->
     paths = fs.readdirSync dirPath
-  
+
     @_loadJSFileOrDirectory path.join(dirPath, filePath) for filePath in paths
     true
 
@@ -22,7 +22,7 @@ class FileLoader
     stat = fs.statSync sourcePath
     if stat?.isDirectory()
       @_loadJSDirectory sourcePath
-    else	  
+    else
       # Get the relative path to the jsFilesRoot
       assetName = path.relative @jsFilesRoot, sourcePath
 
@@ -45,7 +45,7 @@ class FileLoader
 
   watchFiles: (fileChangedCallback, done) ->
 
-    watchOptions = 
+    watchOptions =
       # Watch our js root
       path: @jsFilesRoot
 
@@ -53,7 +53,7 @@ class FileLoader
       listener: (evt, filePath, fileStat, filePrevStat) =>
         @_loadJSFileOrDirectory filePath
         fileChangedCallback?(null, filePath)
-      
+
       # Wait til we're ready before continuing
       next: (err, watchr) ->
         done(err, watchr)
